@@ -1,7 +1,7 @@
 import { Fab } from "@mui/material";
 import { FabStyle } from "./styleType";
 import axios from "axios";
-import React, { useState } from 'react';
+import  { useState } from 'react';
 
 const GetUsers = () => {
     const [users, setUsers] = useState([]);

@@ -1,26 +1,3 @@
-// import React from 'react';
-// import { Container, Typography, Box } from '@mui/material';
-// import GetActivity from './GetActivities';
-// import AddActivity from './AddActivity';
-
-// const ManagementActivities = () => {
-//   return (
-//     <Container maxWidth="lg">
-//       <Box my={4}>
-//         <Typography variant="h3" component="h1" gutterBottom align="center">
-//           Management Activities
-//         </Typography>
-//       </Box>
-      
-//       <GetActivity />
-//       <AddActivity />
-//     </Container>
-//   );
-// };
-
-// export default ManagementActivities;
-//////////////////
-import React from 'react';
 import { Container, Typography, Box, Paper } from '@mui/material';
 import GetActivity from './GetActivities';
 import AddActivity from './AddActivity';

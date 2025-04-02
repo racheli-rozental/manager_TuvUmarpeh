@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -14,7 +14,7 @@ const DeleteComponent = () => {
                 data: { identityNumber } // שולח את מספר הזהות כנתון בבקשה
             });
             setIsDeleted(true);
-        } catch (err) {
+        } catch (err:any) {
             setError(err.message);
         }
     };

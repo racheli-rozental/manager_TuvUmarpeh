@@ -1,37 +1,7 @@
-// import axios from 'axios';
-// import React from 'react';
-// import { useNavigate } from 'react-router-dom';
-
-// const DeleteActivity = ({ activityId }: { activityId: string }) => {
-//     const navigate = useNavigate(); // ודא שאתה מייבא את useNavigate
-
-//     const handleDelete = async () => {
-//         if (!activityId) return;
-
-//         try {
-//             const response = await axios.delete(`http://localhost:5095/deleteActivity/${activityId}`);
-//             console.log('Activity deleted:', response.data);
-//             navigate('/managementActivities'); // ניתוב לדף הבית לאחר המחיקה
-//         } catch (error) {
-//             console.error('There was a problem with the delete operation:', error);
-//         }
-//     };
-
-//     return (
-//         <div>
-//             <button onClick={handleDelete}>Delete Activity</button>
-//         </div>
-//     );
-// };
-
-// export default DeleteActivity;
-////////////////
-
-
 import axios from 'axios';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Box, Typography, Paper, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { Button, Box, Typography, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 
 const DeleteActivity = ({ activityId }: { activityId: string }) => {
     const navigate = useNavigate();

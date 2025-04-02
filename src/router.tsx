@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router";
 
 import AppLayout from "./components/AppLayout";
 import ManagementActivities from "./components/ManagementActivities";
