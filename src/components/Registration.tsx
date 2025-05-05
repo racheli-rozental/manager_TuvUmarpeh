@@ -246,23 +246,93 @@
 // };
 
 // export default RegisterComponent;
+//////////////////
+// import  { useState } from 'react';
+// import axios from 'axios';
+// import { useNavigate } from 'react-router-dom';
+
+// const RegisterComponent = () => {
+//     const [formData, setFormData] = useState({
+//         IdNumber: '',
+//         FirstName: '',
+//         LastName: '',
+//         Address: '',
+//         Phone: '',
+//         City: '',
+//         Email: '',
+//         BirthDate: '',
+//     });
+//     const [selectedFiles, setSelectedFiles] = useState([]);
+//     const navigate = useNavigate();
+
+//     const handleChange = (e:any) => {
+//         const { name, value } = e.target;
+//         setFormData({
+//             ...formData,
+//             [name]: value
+//         });
+//     };
+
+//     const handleFilesChange = (e:any) => {
+//         setSelectedFiles(Array.from(e.target.files));
+//     };
+
+//     const handleSubmit = async (e:any) => {
+//         e.preventDefault();
+
+//         const formDataToSend = new FormData();
+//         for (const key in formData) {
+//             formDataToSend.append(key, formData[key as keyof typeof formData]);
+//         }
+//         selectedFiles.forEach(file => {
+//             formDataToSend.append('files', file);
+//         });
+
+//         try {
+//             const response = await axios.post('https://server-angular-tovumarpeh.onrender.com/users', formDataToSend, {
+//                 headers: {
+//                     'Content-Type': 'multipart/form-data'
+//                 }
+//             });
+//             console.log('User created successfully:', response.data);
+//             navigate('/'); // ניווט לעמוד הבית
+//         } catch (error) {
+//             console.error('Error creating user:', error);
+//         }
+//     };
+
+//     return (
+//         <form onSubmit={handleSubmit}>
+//             <input type="text" name="IdNumber" placeholder="ID Number" onChange={handleChange} required />
+//             <input type="text" name="FirstName" placeholder="First Name" onChange={handleChange} required />
+//             <input type="text" name="LastName" placeholder="Last Name" onChange={handleChange} required />
+//             <input type="text" name="Address" placeholder="Address" onChange={handleChange} required />
+//             <input type="text" name="Phone" placeholder="Phone" onChange={handleChange} required />
+//             <input type="text" name="City" placeholder="City" onChange={handleChange} required />
+//             <input type="email" name="Email" placeholder="Email" onChange={handleChange} required />
+//             <input type="date" name="BirthDate" onChange={handleChange} required />
+//             <input type="file" name="files" onChange={handleFilesChange} multiple required />
+//             <button type="submit">Register</button>
+//         </form>
+//     );
+// };
+
+// export default RegisterComponent;
 import  { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
-const RegisterComponent = () => {
+const UserRegistration = () => {
     const [formData, setFormData] = useState({
-        IdNumber: '',
-        FirstName: '',
-        LastName: '',
-        Address: '',
-        Phone: '',
-        City: '',
-        Email: '',
-        BirthDate: '',
+        idNumber: '',
+        firstName: '',
+        lastName: '',
+        address: '',
+        phone: '',
+        city: '',
+        email: '',
+        birthDate: '',
+        files: []
     });
-    const [selectedFiles, setSelectedFiles] = useState([]);
-    const navigate = useNavigate();
 
     const handleChange = (e:any) => {
         const { name, value } = e.target;
@@ -272,8 +342,11 @@ const RegisterComponent = () => {
         });
     };
 
-    const handleFilesChange = (e:any) => {
-        setSelectedFiles(Array.from(e.target.files));
+    const handleFileChange = (e:any) => {
+        setFormData({
+            ...formData,
+            files: e.target.files
+        });
     };
 
     const handleSubmit = async (e:any) => {
@@ -281,39 +354,42 @@ const RegisterComponent = () => {
 
         const formDataToSend = new FormData();
         for (const key in formData) {
-            formDataToSend.append(key, formData[key as keyof typeof formData]);
+            if (key === 'files') {
+                for (let i = 0; i < formData.files.length; i++) {
+                    formDataToSend.append('files', formData.files[i]);
+                }
+            } else {
+                formDataToSend.append(key, formData[key as keyof typeof formData] as string);
+            }
         }
-        selectedFiles.forEach(file => {
-            formDataToSend.append('files', file);
-        });
 
         try {
-            const response = await axios.post('https://server-angular-tovumarpeh.onrender.com/users', formDataToSend, {
+            const response = await axios.post('/users', formDataToSend, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            console.log('User created successfully:', response.data);
-            navigate('/'); // ניווט לעמוד הבית
-        } catch (error) {
-            console.error('Error creating user:', error);
+            console.log('User registered successfully:', response.data);
+        } catch (error:any) {
+            console.error('Error registering user:', error.response.data);
         }
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="text" name="IdNumber" placeholder="ID Number" onChange={handleChange} required />
-            <input type="text" name="FirstName" placeholder="First Name" onChange={handleChange} required />
-            <input type="text" name="LastName" placeholder="Last Name" onChange={handleChange} required />
-            <input type="text" name="Address" placeholder="Address" onChange={handleChange} required />
-            <input type="text" name="Phone" placeholder="Phone" onChange={handleChange} required />
-            <input type="text" name="City" placeholder="City" onChange={handleChange} required />
-            <input type="email" name="Email" placeholder="Email" onChange={handleChange} required />
-            <input type="date" name="BirthDate" onChange={handleChange} required />
-            <input type="file" name="files" onChange={handleFilesChange} multiple required />
+            <input type="text" name="idNumber" placeholder="ID Number" onChange={handleChange} required />
+            <input type="text" name="firstName" placeholder="First Name" onChange={handleChange} required />
+            <input type="text" name="lastName" placeholder="Last Name" onChange={handleChange} required />
+            <input type="text" name="address" placeholder="Address" onChange={handleChange} required />
+            <input type="text" name="phone" placeholder="Phone" onChange={handleChange} required />
+            <input type="text" name="city" placeholder="City" onChange={handleChange} required />
+            <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
+            <input type="date" name="birthDate" onChange={handleChange} required />
+            <input type="file" name="files" onChange={handleFileChange} multiple required />
             <button type="submit">Register</button>
         </form>
     );
 };
 
-export default RegisterComponent;
+export default UserRegistration;
+
