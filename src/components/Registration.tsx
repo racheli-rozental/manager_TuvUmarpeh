@@ -107,7 +107,7 @@ const RegisterComponent = () => {
             }
         });
 
-        axios.post('https://server-angular-tovumarpeh.onrender.com', data)
+        axios.post('https://server-angular-tovumarpeh.onrender.com/users', data)
             .then((response) => {
                 console.log(response)
                 setAlert(true); // הצגת הודעת הצלחה
