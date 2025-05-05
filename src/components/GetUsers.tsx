@@ -9,7 +9,7 @@ const GetUsers = () => {
 
     const fetchUsers = async () => {
         try {
-            const res = await axios.get('http://localhost:5095/users');
+            const res = await axios.get('https://server-react-tovumarpeh.onrender.com/users');
             setUsers(res.data); // שמירת הנתונים ב-State
         } catch (error) {
             setError('Error fetching users'); // עדכון ה-State עם הודעת שגיאה

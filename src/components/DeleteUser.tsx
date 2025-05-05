@@ -17,7 +17,7 @@ const DeleteUser = () => {
         setIsLoading(true);
         setError(null);
         try {
-            await axios.delete(`http://localhost:5095/users/${Number(identityNumber)}`);
+            await axios.delete(`https://server-react-tovumarpeh.onrender.com/users/${Number(identityNumber)}`);
             alert('Child deleted successfully');
         } catch (err) {
             setError('Failed to delete the child');

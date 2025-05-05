@@ -11,7 +11,7 @@ const GetActivity = () => {
   const fetchActivities = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5095/activity'); // החלף ב-URL הנכון
+      const response = await fetch('https://server-react-tovumarpeh.onrender.com/activity'); // החלף ב-URL הנכון
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

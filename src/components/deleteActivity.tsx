@@ -11,7 +11,7 @@ const DeleteActivity = ({ activityId }: { activityId: string }) => {
         if (!activityId) return;
 
         try {
-            const response = await axios.delete(`http://localhost:5095/deleteActivity/${activityId}`);
+            const response = await axios.delete(`https://server-react-tovumarpeh.onrender.com/deleteActivity/${activityId}`);
             console.log('Activity deleted:', response.data);
             navigate('/managementActivities');
         } catch (error) {

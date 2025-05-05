@@ -10,7 +10,7 @@ const DeleteComponent = () => {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`http://localhost:5095/activity/${id}/children/${identityNumber}`, {
+            await axios.delete(`https://server-react-tovumarpeh.onrender.com/activity/${id}/children/${identityNumber}`, {
                 data: { identityNumber } // שולח את מספר הזהות כנתון בבקשה
             });
             setIsDeleted(true);

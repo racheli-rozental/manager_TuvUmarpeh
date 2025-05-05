@@ -15,7 +15,7 @@ const AddActivity = () => {
         const newActivity = { nameActivity, dateActivity, detailsActivity, max };
 
         try {
-            const response = await fetch('http://localhost:5095/addActivity', {
+            const response = await fetch('https://server-react-tovumarpeh.onrender.com/addActivity', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

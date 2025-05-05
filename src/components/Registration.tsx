@@ -83,7 +83,7 @@ const RegisterComponent = () => {
     };
 
     const downloadFile = (fileName: string) => {
-        axios.get(`http://localhost:5095/files/${fileName}`, { responseType: 'blob' })
+        axios.get(`https://server-react-tovumarpeh.onrender.com/files/${fileName}`, { responseType: 'blob' })
             .then(response => {
                 const url = window.URL.createObjectURL(new Blob([response.data]));
                 const a = document.createElement('a');
@@ -107,7 +107,7 @@ const RegisterComponent = () => {
             }
         });
 
-        axios.post('http://localhost:5095/users', data)
+        axios.post('https://server-angular-tovumarpeh.onrender.com', data)
             .then((response) => {
                 console.log(response)
                 setAlert(true); // הצגת הודעת הצלחה
@@ -190,7 +190,7 @@ const RegisterComponent = () => {
                             <Grid item xs={12} sm={4}>
                                 <TextField
                                     name="Email"
-                                    label="דוא"
+                                    label="אימייל"
                                     type="email"
                                     fullWidth
                                     onChange={handleChange}

@@ -13,7 +13,7 @@ const ChildrenList = ({ activityId }: { activityId: string }) => {
         setLoading(true);
         setError(null); // מאפס את השגיאות
         try {
-            const response = await fetch(`http://localhost:5095/enrollments/${activityId}`);
+            const response = await fetch(`https://server-react-tovumarpeh.onrender.com/enrollments/${activityId}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }

@@ -14,7 +14,7 @@ const ActivityDetails = () => {
     useEffect(() => {
         const fetchActivity = async () => {
             try {
-                const response = await fetch(`http://localhost:5095/getActivity/${id}`);
+                const response = await fetch(`https://server-react-tovumarpeh.onrender.com/getActivity/${id}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
