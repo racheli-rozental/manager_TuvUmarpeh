@@ -42,7 +42,7 @@ const UserFiles = ({ activityId }: { activityId: string }) => {
       const filePromises = registeredChildren.map(async (child: any) => {
         if (!child.idNumber) return { childId: null, files: [] };
 
-        const response = await fetch(`http://localhost:5095/file/${child.idNumber}`);
+        const response = await fetch(`https://server-react-tovumarpeh.onrender.com/file/${child.idNumber}`);
         const data = await response.json();
         return { childId: child.idNumber, files: [data] };
       });
