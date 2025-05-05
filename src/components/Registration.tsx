@@ -364,7 +364,7 @@ const UserRegistration = () => {
         }
 
         try {
-            const response = await axios.post('/users', formDataToSend, {
+            const response = await axios.post('https://server-angular-tovumarpeh.onrender.com/users', formDataToSend, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
