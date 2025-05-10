@@ -17,7 +17,7 @@ const UserFiles = ({ activityId }: { activityId: string }) => {
     const fetchRegisteredChildren = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`http://localhost:5095/enrollments/${activityId}`);
+        const response = await fetch(`https://server-react-tovumarpeh.onrender.com/enrollments/${activityId}`);
         const data = await response.json();
         setRegisteredChildren(data);
       } catch (error) {
