@@ -1,6 +1,5 @@
 import  { useState } from 'react';
 import { Box, Button, Typography, CircularProgress, List, ListItem, ListItemText, Paper } from '@mui/material';
-import DeleteUserForActivity from './DeleteUserForActivity';
 
 const ChildrenList = ({ activityId }: { activityId: string }) => {
     const [children, setChildren] = useState<any[]>([]);
@@ -85,7 +84,6 @@ const ChildrenList = ({ activityId }: { activityId: string }) => {
                     </List>
                 </Paper>
             )}
-            <DeleteUserForActivity/>
         </Box>
     );
 };
