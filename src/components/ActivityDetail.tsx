@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import DeleteActivity from './deleteActivity';
 import UpdateActivity from './UpdateActivity';
 import { Box, Button, Typography, Paper, CircularProgress, Divider } from '@mui/material';
-import DeleteUserForActivity from './DeleteUserForActivity';
 const ActivityDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -130,7 +129,7 @@ const ActivityDetails = () => {
                                 >
                                  ילדים רשומים לפעילות זו
                                 </Button>
-                                <DeleteUserForActivity/>
+                                
                     {/* {id && <ChildrenList activityId={id}/>} */}
                 </Box>
             </Paper>
