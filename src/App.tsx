@@ -2,7 +2,6 @@
 // import Login from './components/Login'
 import UserNavigate from './components/UserNavigate'
 import { UserProvider } from './components/context'
-import UpdateUser from './components/UpdeteUser'
 import {RouterProvider } from 'react-router-dom'
 //import Navbar from './components/Navbar'
 import { router } from './router'
