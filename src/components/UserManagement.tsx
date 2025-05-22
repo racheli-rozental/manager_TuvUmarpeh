@@ -1,4 +1,4 @@
-import { UserProvider } from "./context";
+// import { UserProvider } from "./context";
 import DeleteUser from "./DeleteUser";
 import GetUsers from "./GetUsers";
 import Registration from "./Registration";
@@ -13,9 +13,7 @@ const UserManagement = () => {
          <Registration/>
          <GetUsers />
          <UpdateUser />
-         <UserProvider>
-         <UpdateUser />
-            </UserProvider>
+        
          <DeleteUser/>
 
          </>
