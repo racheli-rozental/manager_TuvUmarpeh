@@ -13,8 +13,8 @@ export const router = createBrowserRouter([
         path: '/', element: <AppLayout />,
         errorElement:<h1>error</h1>,
         children: [
-            { path: 'userManagement', element: <UserManagement /> },
-            { path: 'managementActivities', element: <ManagementActivities /> },
+
+            { path: 'userManagement', element: <UserManagement showUpdateUser={true} /> },            { path: 'managementActivities', element: <ManagementActivities /> },
             { path: 'systemManagement', element: <SystemManagement /> },
             {path:'/activity/:id',element:<ActivityDetail/>},
             {path:'/managementRegisters/:id',element:<ManagementRegisters/>},
