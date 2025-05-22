@@ -17,9 +17,7 @@ const Navbar = () => {
         <Button color="inherit" component={Link} to='/managementActivities' sx={{  marginTop: 2 }}>
           ניהול פעילויות 
         </Button>
-        <Button color="inherit" component={Link} to='/systemManagement' sx={{  marginTop: 2 }}>
-          ניהול מערכת 
-        </Button>
+        
       </Toolbar>
     </AppBar>
   );
