@@ -28,7 +28,7 @@ const UpdateUser = () => {
         try {
             const dataToSend = { ...formData };
     console.log(dataToSend);
-            const res = await axios.put(`https://server-angular-tovumarpeh.onrender.com/users/${formData.idNumber}`, dataToSend, {
+            const res = await axios.put(`https://server-react-tovumarpeh.onrender.com/users/${formData.idNumber}`, dataToSend, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
