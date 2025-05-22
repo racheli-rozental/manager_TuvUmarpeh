@@ -1,326 +1,10 @@
-// import  { useState, ChangeEvent, FormEvent } from 'react';
-// import { Box, Button, Modal, Snackbar, TextField, Grid, Fab, Alert } from '@mui/material';
-// import axios from 'axios';
 
-// // סטיילים
-// const FabStyle = {
-//     position: 'fixed',
-//     bottom: 20,
-//     right: 20,
-//     backgroundColor: '#1976d2',
-//     color: 'white',
-// };
-
-// const ModalStyle = {
-//     position: 'absolute' as 'absolute',
-//     top: '50%',
-//     left: '50%',
-//     transform: 'translate(-50%, -50%)',
-//     bgcolor: 'background.paper',
-//     border: '2px solid #000',
-//     boxShadow: 24,
-//     p: 4,
-//     width: '80%',
-//     maxWidth: 600
-// };
-
-// const ButtonStyle = {
-//     backgroundColor: '#1976d2',
-//     color: 'white',
-//     marginTop: 2,
-//     padding: '10px 20px',
-// };
-
-// const DownloadButtonStyle = {
-//     backgroundColor: '#1976d2',
-//     color: 'white',
-//     margin: '5px',
-//     padding: '10px 15px',
-// };
-
-// interface FormData {
-//     IdNumber: string;
-//     FirstName: string;
-//     LastName: string;
-//     Address: string;
-//     Phone: string;
-//     City: string;
-//     Email: string;
-//     BirthDate: string;
-//     files: File[]; // הגדר את סוג הקבצים
-// }
-
-// const RegisterComponent = () => {
-//     const [formData, setFormData] = useState<FormData>({
-//         IdNumber: '',
-//         FirstName: '',
-//         LastName: '',
-//         Address: '',
-//         Phone: '',
-//         City: '',
-//         Email: '',
-//         BirthDate: '',
-//         files: []
-//     });
-//     const [alert, setAlert] = useState(false);
-//     const [open, setOpen] = useState(false);
-
-//     const handleOpen = () => setOpen(true);
-//     const handleClose = () => setOpen(false);
-
-//     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-//         const { name, value } = e.target;
-//         setFormData({ ...formData, [name]: value });
-//     };
-
-//     const handleFileChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
-//         const file = e.target.files ? e.target.files[0] : null;
-//         const filesArray = [...formData.files];
-//         if (file) {
-//             filesArray[index] = file; // עדכון הקובץ במיקום המתאים
-//             setFormData({ ...formData, files: filesArray });
-//         }
-//     };
-
-//     const downloadFile = (fileName: string) => {
-//         axios.get(`https://server-react-tovumarpeh.onrender.com/files/${fileName}`, { responseType: 'blob' })
-//             .then(response => {
-//                 const url = window.URL.createObjectURL(new Blob([response.data]));
-//                 const a = document.createElement('a');
-//                 a.href = url;
-//                 a.download = fileName;
-//                 document.body.appendChild(a);
-//                 a.click();
-//                 a.remove();
-//             })
-//             .catch(error => {
-//                 console.error('Error downloading the file', error);
-//             });
-//     };
-
-//     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-//         e.preventDefault();
-//         const data = new FormData();
-//         formData.files.forEach(file => {
-//             if (file) {
-//                 data.append('files', file); // ודא שהמפתח תואם למה שהשרת מצפה
-//             }
-//         });
-
-//         axios.post('https://server-angular-tovumarpeh.onrender.com/users', data)
-//             .then((response) => {
-//                 console.log(response)
-//                 setAlert(true); // הצגת הודעת הצלחה
-//                 handleClose(); // סגירת המודל
-//                 setTimeout(() => setAlert(false), 3000); // הסרת ההודעה לאחר 3 שניות
-//             })
-//             .catch(error => {
-//                 console.error('Error creating user:', error);
-//             });
-//     };
-
-//     return (
-//         <Box sx={{ padding: '20px', textAlign: 'center' }}>
-//             {/* כפתור לפתיחת המודל */}
-//             <Fab sx={FabStyle} variant="extended" size="large" onClick={handleOpen}>
-//                 הוספת משתמש למערכת
-//             </Fab>
-
-//             {/* מודל עבור הטופס */}
-//             <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
-//                 <Box sx={ModalStyle}>
-//                     <h2 id="parent-modal-title">הכנס את פרטיך:</h2>
-//                     <form onSubmit={handleSubmit}>
-//                         {/* השתמש ב-Grid כדי להציג את השדות במספר עמודות */}
-//                         <Grid container spacing={2}>
-//                             <Grid item xs={12} sm={4}>
-//                                 <TextField
-//                                     name="IdNumber"
-//                                     label="מספר זהות"
-//                                     fullWidth
-//                                     onChange={handleChange}
-//                                     required
-//                                 />
-//                             </Grid>
-//                             <Grid item xs={12} sm={4}>
-//                                 <TextField
-//                                     name="FirstName"
-//                                     label="שם פרטי"
-//                                     fullWidth
-//                                     onChange={handleChange}
-//                                     required
-//                                 />
-//                             </Grid>
-//                             <Grid item xs={12} sm={4}>
-//                                 <TextField
-//                                     name="LastName"
-//                                     label="שם משפחה"
-//                                     fullWidth
-//                                     onChange={handleChange}
-//                                     required
-//                                 />
-//                             </Grid>
-//                             <Grid item xs={12} sm={4}>
-//                                 <TextField
-//                                     name="Address"
-//                                     label="כתובת"
-//                                     fullWidth
-//                                     onChange={handleChange}
-//                                     required
-//                                 />
-//                             </Grid>
-//                             <Grid item xs={12} sm={4}>
-//                                 <TextField
-//                                     name="Phone"
-//                                     label="טלפון"
-//                                     fullWidth
-//                                     onChange={handleChange}
-//                                     required
-//                                 />
-//                             </Grid>
-//                             <Grid item xs={12} sm={4}>
-//                                 <TextField
-//                                     name="City"
-//                                     label="עיר"
-//                                     fullWidth
-//                                     onChange={handleChange}
-//                                     required
-//                                 />
-//                             </Grid>
-//                             <Grid item xs={12} sm={4}>
-//                                 <TextField
-//                                     name="Email"
-//                                     label="אימייל"
-//                                     type="email"
-//                                     fullWidth
-//                                     onChange={handleChange}
-//                                     required
-//                                 />
-//                             </Grid>
-//                             <Grid item xs={12} sm={4}>
-//                                 <TextField
-//                                     name="BirthDate"
-//                                     label="תאריך לידה"
-//                                     type="date"
-//                                     fullWidth
-//                                     onChange={handleChange}
-//                                     InputLabelProps={{ shrink: true }}
-//                                     required
-//                                 />
-//                             </Grid>
-//                             {[...Array(4)].map((_, index) => (
-//                                 <Grid item xs={12} sm={4} key={index}>
-//                                     <input
-//                                         type="file"
-//                                         onChange={(e) => handleFileChange(e, index)}
-//                                     />
-//                                 </Grid>
-//                             ))}
-//                         </Grid>
-
-//                         <div>
-//                             <Button sx={ButtonStyle} type="submit" fullWidth>
-//                                 שלח
-//                             </Button>
-//                         </div>
-//                             {/* כפתורים להורדה */}
-//             <Box sx={{ marginTop: '20px' }}>
-//                 <Button sx={DownloadButtonStyle} onClick={() => downloadFile('Medications.pdf')}>הורד קובץ 1</Button>
-//                 <Button sx={DownloadButtonStyle} onClick={() => downloadFile('agreement.pdf')}>הורד קובץ 2</Button>
-//                 <Button sx={DownloadButtonStyle} onClick={() => downloadFile('personal.pdf')}>הורד קובץ 3</Button>
-//             </Box>
-//                     </form>
-//                 </Box>
-//             </Modal>
-
-        
-
-//             {/* הודעת הצלחה */}
-//             <Snackbar open={alert} autoHideDuration={3000} anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}>
-//                 <Alert severity="success" sx={{ width: '100%' }}>
-//                     נרשמת בהצלחה!
-//                 </Alert>
-//             </Snackbar>
-//         </Box>
-//     );
-// };
-
-// export default RegisterComponent;
-//////////////////
-// import  { useState } from 'react';
-// import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
-
-// const RegisterComponent = () => {
-//     const [formData, setFormData] = useState({
-//         IdNumber: '',
-//         FirstName: '',
-//         LastName: '',
-//         Address: '',
-//         Phone: '',
-//         City: '',
-//         Email: '',
-//         BirthDate: '',
-//     });
-//     const [selectedFiles, setSelectedFiles] = useState([]);
-//     const navigate = useNavigate();
-
-//     const handleChange = (e:any) => {
-//         const { name, value } = e.target;
-//         setFormData({
-//             ...formData,
-//             [name]: value
-//         });
-//     };
-
-//     const handleFilesChange = (e:any) => {
-//         setSelectedFiles(Array.from(e.target.files));
-//     };
-
-//     const handleSubmit = async (e:any) => {
-//         e.preventDefault();
-
-//         const formDataToSend = new FormData();
-//         for (const key in formData) {
-//             formDataToSend.append(key, formData[key as keyof typeof formData]);
-//         }
-//         selectedFiles.forEach(file => {
-//             formDataToSend.append('files', file);
-//         });
-
-//         try {
-//             const response = await axios.post('https://server-angular-tovumarpeh.onrender.com/users', formDataToSend, {
-//                 headers: {
-//                     'Content-Type': 'multipart/form-data'
-//                 }
-//             });
-//             console.log('User created successfully:', response.data);
-//             navigate('/'); // ניווט לעמוד הבית
-//         } catch (error) {
-//             console.error('Error creating user:', error);
-//         }
-//     };
-
-//     return (
-//         <form onSubmit={handleSubmit}>
-//             <input type="text" name="IdNumber" placeholder="ID Number" onChange={handleChange} required />
-//             <input type="text" name="FirstName" placeholder="First Name" onChange={handleChange} required />
-//             <input type="text" name="LastName" placeholder="Last Name" onChange={handleChange} required />
-//             <input type="text" name="Address" placeholder="Address" onChange={handleChange} required />
-//             <input type="text" name="Phone" placeholder="Phone" onChange={handleChange} required />
-//             <input type="text" name="City" placeholder="City" onChange={handleChange} required />
-//             <input type="email" name="Email" placeholder="Email" onChange={handleChange} required />
-//             <input type="date" name="BirthDate" onChange={handleChange} required />
-//             <input type="file" name="files" onChange={handleFilesChange} multiple required />
-//             <button type="submit">Register</button>
-//         </form>
-//     );
-// };
-
-// export default RegisterComponent;
-import  { useState } from 'react';
+import { Box, Button, Modal, Snackbar, TextField, Fab, Alert, Grid } from '@mui/material';
+import { useState } from 'react';
 import axios from 'axios';
-
+import { FabStyle, Modalstyle, butttonStyle } from './styleType';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
+import DownloadIcon from '@mui/icons-material/Download';
 const UserRegistration = () => {
     const [formData, setFormData] = useState({
         idNumber: '',
@@ -333,25 +17,25 @@ const UserRegistration = () => {
         birthDate: '',
         files: []
     });
-
-    const handleChange = (e:any) => {
+    const [alert] = useState(false);
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const handleChange = (e: any) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
             [name]: value
         });
     };
-
-    const handleFileChange = (e:any) => {
+    const handleFileChange = (e: any) => {
         setFormData({
             ...formData,
             files: e.target.files
         });
     };
-
-    const handleSubmit = async (e:any) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
-
         const formDataToSend = new FormData();
         for (const key in formData) {
             if (key === 'files') {
@@ -370,26 +54,207 @@ const UserRegistration = () => {
                 }
             });
             console.log('User registered successfully:', response.data);
-        } catch (error:any) {
+        } catch (error: any) {
             console.error('Error registering user:', error.response.data);
         }
     };
-
-    return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="idNumber" placeholder="ID Number" onChange={handleChange} required />
-            <input type="text" name="firstName" placeholder="First Name" onChange={handleChange} required />
-            <input type="text" name="lastName" placeholder="Last Name" onChange={handleChange} required />
-            <input type="text" name="address" placeholder="Address" onChange={handleChange} required />
-            <input type="text" name="phone" placeholder="Phone" onChange={handleChange} required />
-            <input type="text" name="city" placeholder="City" onChange={handleChange} required />
-            <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
-            <input type="date" name="birthDate" onChange={handleChange} required />
-            <input type="file" name="files" onChange={handleFileChange} multiple required />
-            <button type="submit">Register</button>
-        </form>
+    const downloadFile = async (fileName: string) => {
+        try {
+            const response = await fetch(`https://server-react-tovumarpeh.onrender.com/files/${fileName}`);
+            if (!response.ok) throw new Error('Network response was not ok');
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error('Error downloading the file', error);
+        }
+    };
+    return (<>
+        <Box sx={{ padding: '20px', textAlign: 'center' }}>
+            {/* כפתור לפתיחת המודל */}
+            <Fab
+                sx={{ ...FabStyle, bgcolor: 'transparent', marginTop: 10 }}
+                variant="extended"
+                size="large"
+                onClick={handleOpen}
+            >
+                הוספת משתמש למערכת
+            </Fab>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                sx={{
+                    // רקע כהה יותר
+                    backdropFilter: 'blur(2px)',
+                    backgroundColor: 'rgba(0,0,0,0.7)',
+                }}
+            >
+                <Box
+                    sx={{
+                        ...Modalstyle,
+                        padding: '32px 24px',
+                        textAlign: 'center',
+                        maxWidth: 600,
+                        margin: 'auto',
+                        mt: 8,
+                        bgcolor: '#fff',
+                        border: '3px solid #1976d2',
+                        boxShadow: '0 8px 32px rgba(25, 118, 210, 0.25), 0 2px 8px rgba(0,0,0,0.18)',
+                        borderRadius: 2,
+                        zIndex: 1301,
+                        direction: 'rtl',
+                    }}
+                >
+                    <form onSubmit={handleSubmit}>
+                        <Grid container spacing={2}>
+                            {/* ...השדות שלך... */}
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    name="idNumber"
+                                    label="מספר זהות"
+                                    fullWidth
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    name="firstName"
+                                    label="שם פרטי"
+                                    fullWidth
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    name="lastName"
+                                    label="שם משפחה"
+                                    fullWidth
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    name="address"
+                                    label="כתובת"
+                                    fullWidth
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    name="phone"
+                                    label="טלפון"
+                                    fullWidth
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    name="city"
+                                    label="עיר"
+                                    fullWidth
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    name="email"
+                                    label="אימייל"
+                                    type="email"
+                                    fullWidth
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    name="birthDate"
+                                    label="תאריך לידה"
+                                    type="date"
+                                    fullWidth
+                                    onChange={handleChange}
+                                    InputLabelProps={{ shrink: true }}
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <label htmlFor="upload-files">
+                                    <input
+                                        id="upload-files"
+                                        type="file"
+                                        name="files"
+                                        multiple
+                                        required
+                                        style={{ display: 'none' }}
+                                        onChange={handleFileChange}
+                                    />
+                                    <Button
+                                        variant="contained"
+                                        component="span"
+                                        startIcon={<UploadFileIcon />}
+                                        sx={{ ...butttonStyle }}
+                                    >
+                                        העלה קבצים
+                                    </Button>
+                                </label>
+                                <Box sx={{ marginTop: '20px', width: '100%' }}>
+                                    <Button
+                                        sx={{ ...butttonStyle, margin: 1, marginLeft: 5 }}
+                                        onClick={() => downloadFile('agreement.pdf')}
+                                        startIcon={<DownloadIcon />}
+                                    >
+                                        הורד טופס הסכמות
+                                    </Button>
+                                    <Button
+                                        sx={{ ...butttonStyle, marginRight: 3 }}
+                                        onClick={() => downloadFile('Medications.pdf')}
+                                        startIcon={<DownloadIcon />}
+                                    >
+                                        הורד טופס תרופות
+                                    </Button>
+                                    <Button
+                                        sx={{ ...butttonStyle, marginRight: 1 }}
+                                        onClick={() => downloadFile('personal.pdf')}
+                                        startIcon={<DownloadIcon />}
+                                    >
+                                        הורד טופס פרטים
+                                    </Button>
+                                </Box>
+                            </Grid>
+                        </Grid>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            sx={{ ...butttonStyle, marginTop: 3, padding: '10px 30px' }}
+                        >
+                            הרשמה
+                        </Button>
+                    </form>
+                    <Snackbar open={alert} autoHideDuration={3000} anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}>
+                        <Alert severity="success" sx={{ width: '100%' }}>
+                            נרשמת בהצלחה!
+                        </Alert>
+                    </Snackbar>
+                </Box>
+            </Modal>
+        </Box>
+    </>
     );
 };
-
 export default UserRegistration;
 

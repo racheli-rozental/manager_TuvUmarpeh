@@ -1,6 +1,5 @@
 
 export const FabStyle = {
-
     position: 'fixed',
     top: 17,
     right: 10,
@@ -8,6 +7,7 @@ export const FabStyle = {
     color: 'rgb(21, 20, 20)',
     border: '3px solid rgb(249, 71, 255)',
     borderRadius: '14px',
+    direction: 'rtl',
 
     '&:hover': {
         transform: 'scale(1.1)',
