@@ -12,9 +12,6 @@ const UserManagement = ({ showUpdateUser }: UserManagementProps) => {
 
       return (
         <>
-            <div>
-                <h1>User Management</h1>
-            </div>
             <Registration />
             <GetUsers />
             <UserProvider>

@@ -1,16 +1,10 @@
-import { Container, Typography, Box, Paper } from '@mui/material';
+import { Container, Box, Paper } from '@mui/material';
 import GetActivity from './GetActivities';
 import AddActivity from './AddActivity';
 
 const ManagementActivities = () => {
   return (
     <Container maxWidth="lg">
-      {/* כותרת */}
-      <Box my={4}>
-        <Typography variant="h3" component="h1" gutterBottom align="center" style={{ fontWeight: 700, color: '#3f51b5' }}>
-          Management Activities
-        </Typography>
-      </Box>
 
       {/* רכיב GetActivity */}
       <Box mb={4}>
