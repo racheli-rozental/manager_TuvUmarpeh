@@ -12,6 +12,7 @@ const UserManagement = () => {
         </div>
          <Registration/>
          <GetUsers />
+         <UpdateUser />
          <UserProvider>
          <UpdateUser />
             </UserProvider>

@@ -1,4 +1,4 @@
-import './App.css'
+  import './App.css'
 // import Login from './components/Login'
 import UserNavigate from './components/UserNavigate'
 import { UserProvider } from './components/context'
@@ -11,7 +11,7 @@ function App() {
   return (<>
     <UserProvider>
         <UserNavigate />
-        <UpdateUser />
+        
       
         </UserProvider>
             <RouterProvider router={router} />
