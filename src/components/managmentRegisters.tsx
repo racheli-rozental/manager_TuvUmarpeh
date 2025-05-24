@@ -106,7 +106,8 @@ const ManagementRegisters = () => {
                     width: '100%',
                     borderRadius: 5,
                     bgcolor: '#fff',
-                    boxShadow: '0 8px 32px rgba(25, 118, 210, 0.13), 0 2px 8px rgba(0,0,0,0.10)'
+                    boxShadow: '0 8px 32px rgba(25, 118, 210, 0.13), 0 2px 8px rgba(0,0,0,0.10)',
+                    overflowX: 'auto'
                 }}
             >
                 <Typography
@@ -122,16 +123,25 @@ const ManagementRegisters = () => {
                     ניהול רישומים לפעילות
                 </Typography>
                 <Divider sx={{ mb: 4 }} />
-                <Stack direction="row" spacing={4} alignItems="flex-start" justifyContent="center">
-                    <Box sx={{ flex: 1, minWidth: 250 }}>
+                <Stack
+                    direction="row"
+                    spacing={4}
+                    alignItems="flex-start"
+                    justifyContent="center"
+                    sx={{
+                        width: '100%',
+                        flexWrap: 'nowrap'
+                    }}
+                >
+                    <Box sx={{ flex: 1, minWidth: 300, maxWidth: 400 }}>
                         <ChildrenList activityId={id || ''} />
                     </Box>
                     <Divider orientation="vertical" flexItem sx={{ mx: 0 }} />
-                    <Box sx={{ flex: 1, minWidth: 250 }}>
+                    <Box sx={{ flex: 1, minWidth: 300, maxWidth: 400 }}>
                         <UserFiles activityId={id || ''} />
                     </Box>
                     <Divider orientation="vertical" flexItem sx={{ mx: 0 }} />
-                    <Box sx={{ flex: 1, minWidth: 250 }}>
+                    <Box sx={{ flex: 1, minWidth: 300, maxWidth: 400 }}>
                         <DeleteUserForActivity />
                     </Box>
                 </Stack>
